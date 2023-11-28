@@ -1,0 +1,17 @@
+﻿version: '3.9'
+services:
+  sql-server:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: School_API_DB
+    environment:
+      MSSQL_DB_NAME: School_API_DB
+      SA_USER: sa
+      SA_PASSWORD: 94Pepe3d2y
+      ACCEPT_EULA: Y
+    ports:
+      - "1433:1433"
+    networks:
+      - app-network
+
+networks:
+  app-network:
