@@ -1,2 +1,2 @@
 # school-api
-basic api forlanguage schools 
+basic api for language schools 
