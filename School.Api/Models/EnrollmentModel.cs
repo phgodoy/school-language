@@ -15,7 +15,6 @@ namespace School.Api.Models
         [MaxLength(255)]
         public string PaymentStatus { get; set; }
 
-        // Propriedades de navegação para as chaves estrangeiras
         public UserModel User { get; set; }
         public ClassModel Class { get; set; }
     }

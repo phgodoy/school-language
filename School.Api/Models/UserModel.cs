@@ -13,6 +13,6 @@
         public int UserRole { get; set; }
         public int Status { get; set; }
 
-        public List<EnrollmentModel> Enrollments { get; internal set; }
+       public List<EnrollmentModel> Enrollments { get; internal set; }
     }
 }
