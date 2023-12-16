@@ -4,10 +4,10 @@ namespace School.Api.Repositories.Interfaces
 {
     public interface IUserRepository
     {
-        Task<IEnumerable<UserModel>> GetAllUsers();
+        Task<UserModel> AddUser(UserModel user);
+        Task<bool> DeleteUser(int userId);
+        Task<List<UserModel>> GetAllUsers();
         Task<UserModel> GetUserById(int userId);
-        Task AddUser(UserModel user);
-        Task UpdateUser(UserModel user);
-        Task DeleteUser(int userId);
+        Task<UserModel> UpdateUser(int userId, UserModel userData);
     }
 }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\react\\School.Api\\School.Api.csproj": {}
+    "D:\\projects\\repos\\School.Api\\School.Api.csproj": {}
   },
   "projects": {
-    "D:\\react\\School.Api\\School.Api.csproj": {
+    "D:\\projects\\repos\\School.Api\\School.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\react\\School.Api\\School.Api.csproj",
+        "projectUniqueName": "D:\\projects\\repos\\School.Api\\School.Api.csproj",
         "projectName": "School.Api",
-        "projectPath": "D:\\react\\School.Api\\School.Api.csproj",
+        "projectPath": "D:\\projects\\repos\\School.Api\\School.Api.csproj",
         "packagesPath": "C:\\Users\\ojama\\.nuget\\packages\\",
-        "outputPath": "D:\\react\\School.Api\\obj\\",
+        "outputPath": "D:\\projects\\repos\\School.Api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ojama\\AppData\\Roaming\\NuGet\\NuGet.Config",

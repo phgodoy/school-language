@@ -24,12 +24,6 @@ public class UserController : ControllerBase
     public async Task<ActionResult<UserModel>> GetUserById(int id)
     {
         var user = await _userRepository.GetUserById(id);
-
-        if (user == null)
-        {
-            return NotFound();
-        }
-
         return Ok(user);
     }
 
@@ -43,13 +37,10 @@ public class UserController : ControllerBase
     [HttpPut("{id}")]
     public async Task<ActionResult<UserModel>> UpdateUser(int id, [FromBody] UserModel user)
     {
-        if (id != user.ID)
-        {
-            return BadRequest();
-        }
+        var User = await _userRepository.UpdateUser(id, user);
 
-        await _userRepository.UpdateUser(user);
-        return Ok(user);
+        return Ok(User);
+
     }
 
     [HttpDelete("{id}")]
