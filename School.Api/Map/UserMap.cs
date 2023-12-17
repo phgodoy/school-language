@@ -27,8 +27,6 @@ public class UserMap : IEntityTypeConfiguration<UserModel>
         builder.Property(u => u.Phone)
             .HasMaxLength(20);
 
-        builder.Property(u => u.EnrollmentDate);
-
         builder.Property(u => u.UserRole).IsRequired();
 
         builder.Property(u => u.Status).IsRequired();

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace School.Api.Migrations
 {
     /// <inheritdoc />
-    public partial class NomeDaMigracao : Migration
+    public partial class removeEnrollments : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -76,6 +76,29 @@ namespace School.Api.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Payments",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserID = table.Column<int>(type: "int", nullable: false),
+                    PaymentDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    PaymentAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    PaymentMethod = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    RelatedEnrollmentID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Payments", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Payments_Users_UserID",
+                        column: x => x.UserID,
+                        principalTable: "Users",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Classes",
                 columns: table => new
                 {
@@ -101,63 +124,6 @@ namespace School.Api.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-           name: "Enrollments",
-           columns: table => new
-           {
-               ID = table.Column<int>(type: "int", nullable: false)
-                   .Annotation("SqlServer:Identity", "1, 1"),
-               UserID = table.Column<int>(type: "int", nullable: false),
-               ClassID = table.Column<int>(type: "int", nullable: false),
-               EnrollmentDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-               PaymentStatus = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false)
-           },
-           constraints: table =>
-           {
-               table.PrimaryKey("PK_Enrollments", x => x.ID);
-               table.ForeignKey(
-                   name: "FK_Enrollments_Classes_ClassID",
-                   column: x => x.ClassID,
-                   principalTable: "Classes",
-                   principalColumn: "ID",
-                   onDelete: ReferentialAction.Restrict);
-               table.ForeignKey(
-                   name: "FK_Enrollments_Users_UserID",
-                   column: x => x.UserID,
-                   principalTable: "Users",
-                   principalColumn: "ID",
-                   onDelete: ReferentialAction.Restrict);
-           });
-
-            migrationBuilder.CreateTable(
-                name: "Payments",
-                columns: table => new
-                {
-                    ID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserID = table.Column<int>(type: "int", nullable: false),
-                    PaymentDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    PaymentAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    PaymentMethod = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    RelatedEnrollmentID = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Payments", x => x.ID);
-                    table.ForeignKey(
-                        name: "FK_Payments_Enrollments_RelatedEnrollmentID",
-                        column: x => x.RelatedEnrollmentID,
-                        principalTable: "Enrollments",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Payments_Users_UserID",
-                        column: x => x.UserID,
-                        principalTable: "Users",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_Classes_CourseID",
                 table: "Classes",
@@ -174,21 +140,6 @@ namespace School.Api.Migrations
                 column: "LeadInstructorNavigationIDID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Enrollments_ClassID",
-                table: "Enrollments",
-                column: "ClassID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Enrollments_UserID",
-                table: "Enrollments",
-                column: "UserID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Payments_RelatedEnrollmentID",
-                table: "Payments",
-                column: "RelatedEnrollmentID");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Payments_UserID",
                 table: "Payments",
                 column: "UserID");
@@ -198,13 +149,10 @@ namespace School.Api.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Payments");
-
-            migrationBuilder.DropTable(
-                name: "Enrollments");
-
-            migrationBuilder.DropTable(
                 name: "Classes");
+
+            migrationBuilder.DropTable(
+                name: "Payments");
 
             migrationBuilder.DropTable(
                 name: "Courses");
