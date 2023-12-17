@@ -12,7 +12,6 @@ public class TaskSystemDBContext :DbContext
 
     public DbSet<UserModel> Users { get; set; }
     public DbSet<LanguageModel> Languages { get; set; }
-    public DbSet<EnrollmentModel> Enrollments { get; set; }
     public DbSet<CourseModel> Courses { get; set; }
     public DbSet<PaymentModel> Payments { get; set; }
     public DbSet<ClassModel>  Classes { get; set; }

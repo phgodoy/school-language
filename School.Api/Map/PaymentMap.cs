@@ -14,16 +14,10 @@ public class PaymentMap : IEntityTypeConfiguration<PaymentModel>
         builder.Property(p => p.PaymentDate).HasColumnName("PaymentDate");
         builder.Property(p => p.PaymentAmount).HasColumnName("PaymentAmount");
         builder.Property(p => p.PaymentMethod).HasColumnName("PaymentMethod");
-        builder.Property(p => p.RelatedEnrollmentID).HasColumnName("RelatedEnrollmentID");
 
         builder.HasOne(p => p.User)
             .WithMany()
             .HasForeignKey(p => p.UserID)
-            .OnDelete(DeleteBehavior.Restrict);
-
-        builder.HasOne(p => p.RelatedEnrollment)
-            .WithMany()
-            .HasForeignKey(p => p.RelatedEnrollmentID)
             .OnDelete(DeleteBehavior.Restrict);
     }
 }

@@ -12,7 +12,5 @@
         public DateTime? EnrollmentDate { get; set; }
         public int UserRole { get; set; }
         public int Status { get; set; }
-
-       public List<EnrollmentModel> Enrollments { get; internal set; }
     }
 }

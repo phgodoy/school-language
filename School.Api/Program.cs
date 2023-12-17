@@ -1,5 +1,6 @@
 
 using Microsoft.EntityFrameworkCore;
+using School.Api.Models;
 using School.Api.Repositories;
 using School.Api.Repositories.Interfaces;
 
@@ -25,11 +26,12 @@ namespace School.Api
                 });
 
             builder.Services.AddScoped<ILanguageRepository, LanguageRepository>();
-            builder.Services.AddScoped<IEnrollmentRepository, EnrollmentRepository>();
             builder.Services.AddScoped<ICourseRepository, CourseRepository>();
             builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<IPaymentRepository, PaymentRepository>();
+            builder.Services.AddScoped<IClassRepository, ClassRepository>();
 
-            var app = builder.Build();
+        var app = builder.Build();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())

@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace School.Api.Migrations
 {
     [DbContext(typeof(TaskSystemDBContext))]
-    [Migration("20231128015200_NomeDaMigracao")]
-    partial class NomeDaMigracao
+    [Migration("20231217023827_removeEnrollments")]
+    partial class removeEnrollments
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -107,37 +107,6 @@ namespace School.Api.Migrations
                     b.ToTable("Courses");
                 });
 
-            modelBuilder.Entity("School.Api.Models.EnrollmentModel", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
-
-                    b.Property<int>("ClassID")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("EnrollmentDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("PaymentStatus")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<int>("UserID")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("ClassID");
-
-                    b.HasIndex("UserID");
-
-                    b.ToTable("Enrollments");
-                });
-
             modelBuilder.Entity("School.Api.Models.LanguageModel", b =>
                 {
                     b.Property<int>("Id")
@@ -181,8 +150,6 @@ namespace School.Api.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("RelatedEnrollmentID");
 
                     b.HasIndex("UserID");
 
@@ -264,40 +231,13 @@ namespace School.Api.Migrations
                     b.Navigation("LeadInstructorNavigationID");
                 });
 
-            modelBuilder.Entity("School.Api.Models.EnrollmentModel", b =>
-                {
-                    b.HasOne("School.Api.Models.ClassModel", "Class")
-                        .WithMany()
-                        .HasForeignKey("ClassID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("School.Api.Models.UserModel", "User")
-                        .WithMany("Enrollments")
-                        .HasForeignKey("UserID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Class");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("School.Api.Models.PaymentModel", b =>
                 {
-                    b.HasOne("School.Api.Models.EnrollmentModel", "RelatedEnrollment")
-                        .WithMany()
-                        .HasForeignKey("RelatedEnrollmentID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("School.Api.Models.UserModel", "User")
                         .WithMany()
                         .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("RelatedEnrollment");
 
                     b.Navigation("User");
                 });
@@ -305,11 +245,6 @@ namespace School.Api.Migrations
             modelBuilder.Entity("School.Api.Models.CourseModel", b =>
                 {
                     b.Navigation("Classes");
-                });
-
-            modelBuilder.Entity("School.Api.Models.UserModel", b =>
-                {
-                    b.Navigation("Enrollments");
                 });
 #pragma warning restore 612, 618
         }

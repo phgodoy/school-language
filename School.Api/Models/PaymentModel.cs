@@ -15,9 +15,6 @@ namespace School.Api.Models
         [MaxLength(255)]
         public string PaymentMethod { get; set; }
 
-        public int RelatedEnrollmentID { get; set; }
-
         public UserModel User { get; set; }
-        public EnrollmentModel RelatedEnrollment { get; set; }
     }
 }
