@@ -4083,11 +4083,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\projects\\repos\\School.Api\\School.Api.csproj",
+      "projectUniqueName": "D:\\projects\\school-language\\School.Api\\School.Api.csproj",
       "projectName": "School.Api",
-      "projectPath": "D:\\projects\\repos\\School.Api\\School.Api.csproj",
+      "projectPath": "D:\\projects\\school-language\\School.Api\\School.Api.csproj",
       "packagesPath": "C:\\Users\\ojama\\.nuget\\packages\\",
-      "outputPath": "D:\\projects\\repos\\School.Api\\obj\\",
+      "outputPath": "D:\\projects\\school-language\\School.Api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ojama\\AppData\\Roaming\\NuGet\\NuGet.Config",

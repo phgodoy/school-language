@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "jb1BQvMHX/9YrKBhaXokgpc1RVbzAQc/F1zNEXynDiqkiClzJzgMSE0QmllagAu0lTjCjUlJVC+jDTcKKN4ZGw==",
+  "dgSpecHash": "elbMw/eoidCEzlrmFQRyqa7Ui6Q52twwQRbFxupevlwAOXfKFqakdmWOUnCw/pxHyofDXBWkKj8hFXeVanefeA==",
   "success": true,
-  "projectFilePath": "D:\\projects\\repos\\School.Api\\School.Api.csproj",
+  "projectFilePath": "D:\\projects\\school-language\\School.Api\\School.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ojama\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\ojama\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
