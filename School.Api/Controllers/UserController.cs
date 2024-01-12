@@ -56,4 +56,17 @@ public class UserController : ControllerBase
         await _userRepository.DeleteUser(id);
         return Ok(user);
     }
+
+    [HttpGet("health")]
+    public IActionResult HealthCheck()
+    {
+        try
+        {
+            return Ok("Health check passed");
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"Health check failed: {ex.Message}");
+        }
+    }
 }
