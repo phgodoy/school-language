@@ -1,0 +1,17 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/School.Api/.vs/ProjectEvaluation
+/School.Api/.vs/School.Api/DesignTimeBuild/.dtbcache.v2
+/School.Api/.vs/School.Api/FileContentIndex/2f19c15d-0096-4ba9-ab60-df842b1e1c79.vsidx
+*.vsidx
+/School.Api/.vs/School.Api/FileContentIndex/73cc3561-f054-4e19-a2e3-6c45360f77d1.vsidx
+/School.Api/.vs/School.Api/FileContentIndex/39a5fd5b-a60a-45cf-9f94-4b720db26ef7.vsidx
+/School.Api/.vs/School.Api/FileContentIndex/8eee4d99-d53a-4c83-980b-ee3fb1297e58.vsidx
+/School.Api/.vs/School.Api/v17/.suo
+/School.Api/.vs/School.Api/FileContentIndex/read.lock
+/School.Api/obj/Debug/net7.0/School.Api.AssemblyInfo.cs
+/School.Api/.vs/
+/School.Api/obj/Debug/net8.0/School.Api.AssemblyInfo.cs
+/School.Api/obj/Debug/net8.0/School.Api.AssemblyInfoInputs.cache
