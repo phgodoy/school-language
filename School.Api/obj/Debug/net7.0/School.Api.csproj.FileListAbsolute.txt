@@ -268,3 +268,4 @@ D:\projects\school-language\School.Api\obj\Debug\net7.0\scopedcss\bundle\School.
 D:\projects\school-language\School.Api\obj\Debug\net7.0\School.Api.csproj.CopyComplete
 D:\projects\school-language\School.Api\obj\Debug\net7.0\School.Api.genruntimeconfig.cache
 D:\projects\school-language\School.Api\obj\Debug\net7.0\ref\School.Api.dll
+D:\projects\school-language\School.Api\obj\Debug\net7.0\School.Api.sourcelink.json
