@@ -6,3 +6,12 @@
 .vs/
 *.suo
 /School.Api/.vs/School.Api/v17/.suo
+/School.Api/obj/Debug/net8.0/refint/School.Api.dll
+/School.Api/obj/Debug/net8.0/apphost.exe
+/School.Api/obj/Debug/net8.0/School.Api.AssemblyInfo.cs
+/School.Api/obj/Debug/net8.0/School.Api.AssemblyInfoInputs.cache
+/School.Api/obj/Debug/net8.0/School.Api.dll
+/School.Api/obj/Debug/net8.0/School.Api.pdb
+/School.Api/obj/Debug/net8.0/School.Api.sourcelink.json
+/School.Api/.vs/School.Api/DesignTimeBuild/.dtbcache.v2
+/School.Api/.vs/School.Api/v17/.futdcache.v2
