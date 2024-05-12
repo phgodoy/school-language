@@ -57,5 +57,30 @@ namespace School.Api.Repositories
 
             return user;
         }
+
+        public async Task<UserModel> EnableUser(int userId)
+        {
+            try
+            {
+                UserModel user = await GetUserById(userId);
+
+                if (user != null)
+                {
+                    user.Status = 1; // Supondo que 1 represente o status de usuário habilitado, ajuste conforme necessário
+
+                    _taskSystemDBContext.Entry(user).State = EntityState.Modified;
+
+                    await _taskSystemDBContext.SaveChangesAsync();
+
+                }
+                return user;
+
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException("Erro ao  habilidar o ususario:",ex);
+            }
+        }
+
     }
 }

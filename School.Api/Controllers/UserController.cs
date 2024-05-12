@@ -43,6 +43,20 @@ public class UserController : ControllerBase
 
     }
 
+    [HttpPut("enableUser/{id}")]
+    public async Task<ActionResult<UserModel>> EnableUser(int id)
+    {
+        var user = await _userRepository.GetUserById(id);
+
+        if (user == null)
+        {
+            return NotFound();
+        }
+
+        await _userRepository.EnableUser(id);
+        return Ok(user);
+    }
+
     [HttpDelete("{id}")]
     public async Task<ActionResult<UserModel>> DeleteUser(int id)
     {
