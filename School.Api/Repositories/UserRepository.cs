@@ -19,20 +19,6 @@ namespace School.Api.Repositories
             return user;
         }
 
-        public async Task<bool> DeleteUser(int userId)
-        {
-            UserModel studentModel = await GetUserById(userId);
-
-            if (studentModel == null)
-            {
-                throw new Exception("USUARIO NAO FOI ENCONTRADO");
-            }
-
-            _taskSystemDBContext.Users.Remove(studentModel);
-            await _taskSystemDBContext.SaveChangesAsync();
-            return true;
-        }
-
         public async Task<List<UserModel>> GetAllUsers()
         {
             return await _taskSystemDBContext.Users.ToListAsync();
