@@ -43,12 +43,5 @@ namespace School.Api.Controllers
             var updatedCourse = await _courseService.UpdateCourseAsync(id, courseModel);
             return Ok(updatedCourse);
         }
-
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCourse(int id)
-        {
-            await _courseService.DeleteCourseAsync(id);
-            return NoContent();
-        }
     }
 }

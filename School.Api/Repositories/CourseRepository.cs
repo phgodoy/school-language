@@ -1,33 +1,53 @@
 ﻿using School.Api.Models;
 using School.Api.Repositories.Interfaces;
+using System.Data.Entity;
 
 namespace School.Api.Repositories
 {
     public class CourseRepository : ICourseRepository
     {
-        public Task<CourseModel> AddCourseAsync(CourseModel courseModel)
+        private readonly TaskSystemDBContext _taskSystemDBContext;
+
+        public CourseRepository(TaskSystemDBContext taskSystemDBContext)
         {
-            throw new NotImplementedException();
+            _taskSystemDBContext = taskSystemDBContext;
         }
 
-        public Task<bool> DeleteCourseAsync(int courseId)
+        /// <inheritdoc />
+        public async Task<CourseModel> AddCourseAsync(CourseModel course)
         {
-            throw new NotImplementedException();
+            await _taskSystemDBContext.Courses.AddAsync(course);
+            await _taskSystemDBContext.SaveChangesAsync();
+
+            return course;
         }
 
-        public Task<CourseModel> GetCourseByIdAsync(int courseId)
+        /// <inheritdoc />
+        public async Task<CourseModel> GetCourseByIdAsync(int courseId)
         {
-            throw new NotImplementedException();
+            return await _taskSystemDBContext.Courses.FirstOrDefaultAsync(x => x.ID == courseId);
         }
 
-        public Task<List<CourseModel>> GetCoursesAsync()
+        /// <inheritdoc />
+        public async Task<List<CourseModel>> GetCoursesAsync()
         {
-            throw new NotImplementedException();
+            return await _taskSystemDBContext.Courses.ToListAsync();
         }
 
-        public Task<CourseModel> UpdateCourseAsync(int courseId, CourseModel courseModel)
+        /// <inheritdoc />
+        public async Task<CourseModel> UpdateCourseAsync(int courseId, CourseModel courseData)
         {
-            throw new NotImplementedException();
+            CourseModel course = await GetCourseByIdAsync(courseId);
+
+            if (course == null)
+            {
+                throw new Exception("Usuário não foi encontrado");
+            }
+            _taskSystemDBContext.Entry(course).CurrentValues.SetValues(courseData);
+
+            await _taskSystemDBContext.SaveChangesAsync();
+
+            return course;
         }
     }
 }
