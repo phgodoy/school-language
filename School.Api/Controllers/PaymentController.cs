@@ -67,18 +67,5 @@ namespace School.Api.Controllers
                 return BadRequest(ex.Message); // Retorne BadRequest com uma mensagem de erro em caso de exceção.
             }
         }
-
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletePayment(int id)
-        {
-            var payment = await _paymentService.DeletePaymentAsync(id);
-
-            if (payment)
-            {
-                return NoContent(); // Retorne NoContent se a exclusão for bem-sucedida.
-            }
-
-            return NotFound(); // Retorne NotFound se o pagamento não for encontrado.
-        }
     }
 }

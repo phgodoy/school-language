@@ -1,37 +1,50 @@
 ﻿
 using School.Api.Models;
 using School.Api.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 public class PaymentRepository : IPaymentRepository
 {
     private readonly TaskSystemDBContext _taskSystemDBContext;
+
     public PaymentRepository(TaskSystemDBContext taskSystemDBContext)
     {
         _taskSystemDBContext = taskSystemDBContext;
     }
 
-    public Task<PaymentModel> AddPaymentAsync(PaymentModel payment)
+    /// <inheritdoc />
+    public async Task<PaymentModel> AddPaymentAsync(PaymentModel payment)
     {
-        throw new NotImplementedException();
+        await _taskSystemDBContext.Payments.AddAsync(payment);
+        await _taskSystemDBContext.SaveChangesAsync();
+        return payment;
     }
 
-    public Task<bool> DeletePaymentAsync(int paymentId)
+    /// <inheritdoc />
+    public async Task<PaymentModel> GetPaymentByIdAsync(int paymentId)
     {
-        throw new NotImplementedException();
+        return  _taskSystemDBContext.Payments.FirstOrDefault(x => x.ID == paymentId);
     }
 
-    public Task<PaymentModel> GetPaymentByIdAsync(int paymentId)
+    /// <inheritdoc />
+    public async Task<List<PaymentModel>> GetPaymentsAsync()
     {
-        throw new NotImplementedException();
+        return await _taskSystemDBContext.Payments.ToListAsync();
     }
 
-    public Task<List<PaymentModel>> GetPaymentsAsync()
+    /// <inheritdoc />
+    public async Task<PaymentModel> UpdatePaymentAsync(int paymentId, PaymentModel paymentData)
     {
-        throw new NotImplementedException();
-    }
+        PaymentModel payment = await GetPaymentByIdAsync(paymentId);
 
-    public Task<PaymentModel> UpdatePaymentAsync(int paymentId, PaymentModel payment)
-    {
-        throw new NotImplementedException();
+        if (payment == null)
+        {
+            throw new Exception("Usuário não foi encontrado");
+        }
+        _taskSystemDBContext.Entry(payment).CurrentValues.SetValues(paymentData);
+
+        await _taskSystemDBContext.SaveChangesAsync();
+
+        return payment;
     }
 }
