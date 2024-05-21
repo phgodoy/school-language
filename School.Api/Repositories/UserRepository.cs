@@ -7,11 +7,13 @@ namespace School.Api.Repositories
     public class UserRepository : IUserRepository
     {
         private readonly TaskSystemDBContext _taskSystemDBContext;
+
         public UserRepository(TaskSystemDBContext taskSystemDBContext)
         {
             _taskSystemDBContext = taskSystemDBContext;
         }
 
+        /// <inheritdoc />
         public async Task<UserModel> AddUser(UserModel user)
         {
             await _taskSystemDBContext.Users.AddAsync(user);
@@ -19,6 +21,7 @@ namespace School.Api.Repositories
             return user;
         }
 
+        /// <inheritdoc />
         public async Task<List<UserModel>> GetAllUsers()
         {
             return await _taskSystemDBContext.Users.ToListAsync();
@@ -29,6 +32,7 @@ namespace School.Api.Repositories
             return await _taskSystemDBContext.Users.FirstOrDefaultAsync(x => x.ID == userId);
         }
 
+        /// <inheritdoc />
         public async Task<UserModel> UpdateUser(int userId, UserModel userData)
         {
             UserModel user = await GetUserById(userId);
@@ -44,6 +48,7 @@ namespace School.Api.Repositories
             return user;
         }
 
+        /// <inheritdoc />
         public async Task<UserModel> EnableUser(int userId)
         {
             try
