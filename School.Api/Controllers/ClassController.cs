@@ -1,10 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using School.Api.Models;
 using School.Api.Repositories.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace School.Api.Controllers
 {
@@ -66,19 +62,6 @@ namespace School.Api.Controllers
             {
                 return BadRequest(ex.Message); 
             }
-        }
-
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteClass(int id)
-        {
-            var classModel = await _classService.DeleteClassAsync(id);
-
-            if (classModel)
-            {
-                return NoContent(); // Retorne NoContent se a exclusão for bem-sucedida.
-            }
-
-            return NotFound(); // Retorne NotFound se a classe não for encontrada.
         }
     }
 }

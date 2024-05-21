@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using School.Api.Models;
 using School.Api.Repositories.Interfaces;
 
 namespace School.Api.Repositories
 {
-
-
     public class ClassRepository : IClassRepository
     {
-
         private readonly TaskSystemDBContext _taskSystemDBContext;
 
         public ClassRepository(TaskSystemDBContext taskSystemDBContext)
@@ -20,19 +13,19 @@ namespace School.Api.Repositories
             _taskSystemDBContext = taskSystemDBContext;
         }
 
-        public Task<ClassModel> AddClassAsync(ClassModel classModel)
+        /// <inheritdoc />
+        public async Task<ClassModel> AddClassAsync(ClassModel classModel)
         {
-            throw new NotImplementedException();
+            await _taskSystemDBContext.Classes.AddAsync(classModel);
+            await _taskSystemDBContext.SaveChangesAsync();
+
+            return classModel;
         }
 
-        public Task<bool> DeleteClassAsync(int classId)
+        /// <inheritdoc />
+        public async Task<ClassModel> GetClassByIdAsync(int classId)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<ClassModel> GetClassByIdAsync(int classId)
-        {
-            throw new NotImplementedException();
+            return await _taskSystemDBContext.Classes.FirstOrDefaultAsync(x => x.ID == classId);
         }
 
         public Task<List<ClassModel>> GetClassesAsync()
@@ -40,11 +33,20 @@ namespace School.Api.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<ClassModel> UpdateClassAsync(int classId, ClassModel classModel)
+        /// <inheritdoc />
+        public async Task<ClassModel> UpdateClassAsync(int classId, ClassModel classData)
         {
-            throw new NotImplementedException();
+            ClassModel classModel = await GetClassByIdAsync(classId);
+
+            if (classModel == null)
+            {
+                throw new Exception("Usuário não foi encontrado");
+            }
+            _taskSystemDBContext.Entry(classModel).CurrentValues.SetValues(classData);
+
+            await _taskSystemDBContext.SaveChangesAsync();
+
+            return classModel;
         }
-
     }
-
 }
