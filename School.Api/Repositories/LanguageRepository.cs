@@ -7,10 +7,13 @@ namespace School.Api.Repositories
     public class LanguageRepository : ILanguageRepository
     {
         private readonly TaskSystemDBContext _taskSystemDBContext;
+
         public LanguageRepository(TaskSystemDBContext taskSystemDBContext)
         {
             _taskSystemDBContext = taskSystemDBContext;
         }
+
+        /// <inheritdoc />
         public async Task<LanguageModel> AddLanguageAsync(LanguageModel language)
         {
             await _taskSystemDBContext.Languages.AddAsync(language);
@@ -19,6 +22,7 @@ namespace School.Api.Repositories
             return language;
         }
 
+        /// <inheritdoc />
         public async Task<bool> DeleteLanguageAsync(int languageId)
         {
             LanguageModel languageModel = await GetLanguageByIdAsync(languageId);
@@ -30,9 +34,9 @@ namespace School.Api.Repositories
             _taskSystemDBContext.Languages.Remove(languageModel);
             await _taskSystemDBContext.SaveChangesAsync();
             return true;
-
         }
 
+        /// <inheritdoc />
         public async Task<LanguageModel> GetLanguageByIdAsync(int languageId)
         {
             return await _taskSystemDBContext.Languages.FirstOrDefaultAsync(x => x.Id == languageId);
@@ -43,22 +47,20 @@ namespace School.Api.Repositories
             return await _taskSystemDBContext.Languages.ToListAsync();
         }
 
-        public  async Task<LanguageModel> UpdateLanguageAsync(int languageId, LanguageModel language)
+        /// <inheritdoc />
+        public async Task<LanguageModel> UpdateLanguageAsync(int languageId, LanguageModel languageData)
         {
-            LanguageModel languageModel = await GetLanguageByIdAsync(languageId);
+            LanguageModel language = await GetLanguageByIdAsync(languageId);
 
-            if (languageModel == null)
+            if (language == null)
             {
-                throw new Exception("uSUARIO NAO FOI ENCONTRADO");
+                throw new Exception("USUARIO NAO FOI ENCONTRADO");
             }
 
-            languageModel.LanguageName = languageModel.LanguageName;
-            
-            _taskSystemDBContext.Languages.Update(languageModel);
+            _taskSystemDBContext.Entry(language).CurrentValues.SetValues(languageData);
             await _taskSystemDBContext.SaveChangesAsync();
 
-            return languageModel;
-
+            return language;
         }
     }
 }
